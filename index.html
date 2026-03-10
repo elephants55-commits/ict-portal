@@ -2,10 +2,11 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>大橋陽介 ICT実践ポータル</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://accounts.google.com/gsi/client" async defer onerror="console.warn('Google Sign-In script failed to load')"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════
@@ -1279,8 +1280,7 @@ function gdriveLogin() {
 }
 
 function gdriveLogout() {
-  if (!confirm('Googleドライブの連携を解除しますか？
-ローカルのデータは残ります。')) return;
+  if (!confirm('Googleドライブの連携を解除しますか？ローカルのデータは残ります。')) return;
   if (gdToken && typeof google !== 'undefined') {
     google.accounts.oauth2.revoke(gdToken);
   }
